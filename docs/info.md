@@ -1,20 +1,53 @@
-<!---
+# 3-input Full Adder
 
-This file is used to generate your project datasheet. Please fill in the information below and delete any unused
-sections.
+# How it works
 
-You can also include images in this folder and reference them in the markdown. Each image must be less than
-512 kb in size, and the combined size of all images must be less than 1 MB.
--->
+This project implements a one-bit combinational full adder.
 
-## How it works
+It adds three one-bit input values:
 
-Explain how your project works
+- `ui_in[0]`: A
+- `ui_in[1]`: B
+- `ui_in[2]`: Cin
 
-## How to test
+The circuit produces two outputs:
 
-Explain how to use your project
+- `uo_out[0]`: Sum
+- `uo_out[1]`: Cout
 
-## External hardware
+The Boolean equations are:
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Sum = A XOR B XOR Cin
+
+Cout = (A AND B) OR (A AND Cin) OR (B AND Cin)
+
+The design is purely combinational. Therefore, the clock and reset
+signals are not used.
+
+# How to test
+
+Set the input values using `ui_in[2:0]`:
+
+- Set `ui_in[0]` to A.
+- Set `ui_in[1]` to B.
+- Set `ui_in[2]` to Cin.
+
+Read the results from:
+
+- `uo_out[0]` for Sum.
+- `uo_out[1]` for Cout.
+
+Use the following truth table:
+
+| A | B | Cin | Sum | Cout |
+|---|---|-----|-----|------|
+| 0 | 0 | 0   | 0   | 0    |
+| 0 | 0 | 1   | 1   | 0    |
+| 0 | 1 | 0   | 1   | 0    |
+| 0 | 1 | 1   | 0   | 1    |
+| 1 | 0 | 0   | 1   | 0    |
+| 1 | 0 | 1   | 0   | 1    |
+| 1 | 1 | 0   | 0   | 1    |
+| 1 | 1 | 1   | 1   | 1    |
+
+No external hardware is required.
